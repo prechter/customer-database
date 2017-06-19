@@ -7,49 +7,34 @@
     .then(
       function(response) {
         if (response.status !== 200) {
-          console.log('You done did it this time...' + response.status);
+          console.log('Rut-roh :( ' + response.status);
           return;
         }
         response.json().then(function(data) {
-          console.log('Here is the data:', data);
-
-        // var totalResults = data.results[i];
-        //
-        // for (var i = 0; i < totalResults; i++){
-
-          // let picture = data.results[i].picture.large;
-          // let nameFirst = data.results[i].name.first;
-          // let nameLast = data.results[i].name.last;
-          // let email = data.results[i].email;
-          // let locStreet = data.results[i].location.street;
-          // let locCity = data.results[i].location.city;
-          // let locState = data.results[i].location.state;
-          // let locZip = data.results[i].location.postcode;
-          // let phone = data.results[i].phone;
           let customers = data.results;
 
           function renderCustomer(){
             return `
-              <div class="directory">
                 ${customers.map(customer => `
-                    <div class="customers">
-                       <img src="${customer.picture.large}" alt="user" height="280" width="280">
+                    <div class="customer">
+                       <img src="${customer.picture.large}" alt="user">
                        <h3>${customer.name.first} ${customer.name.last}</h3>
-                       <hr>
                        <span>${customer.email}</span>
                        <ul>
-                         <li>${customer.location.street} ${customer.location.city}</li>
-                         <li>${customer.location.state} ${customer.location.postcode}</li>
+                         <li>${customer.location.street}</li>
+                         <li>${customer.location.city}, ${customer.location.state} ${customer.location.postcode}</li>
+                         <li>${customer.location.phone}</li>
                        </ul>
                      </div>`).join('')}
-              </div>
-            `;
+              `;
            }
 
            let markup = `<header>
                          INTERNAL COMPANY DIRECTORY
-                         <header>
-                         ${renderCustomer(customers)}`
+                         </header>
+                         <div id="wrapper">
+                          ${renderCustomer(customers)}
+                         </div>`
 
           document.body.innerHTML = markup;
         })
@@ -57,3 +42,46 @@
     console.log('Fetch Error :-S', err);
     })
 });
+
+// Different approach below
+//
+//
+// fetch('https://randomuser.me/api/?results=12&nat=us')
+//   .then(
+//     function(response) {
+//       if (response.status !== 200) {
+//         console.log('Rut-roh :( ' + response.status);
+//         return;
+//       }
+//       response.json().then(function(data) {
+//
+//         let photo = data.results[i].picture.large;
+//         let name = data.results[i].name.first + customer.name.last;
+//         let email = data.results[i].email;
+//         let address1 = data.results[i].location.street
+//         let address2 = data.results[i].location.state + data.results[i].location.city + data.results[i].location.postcode;
+//         let phone = data.results[i].phone;
+//
+//
+//         let markup = `
+//         <h1>INTERNAL COMPANY DIRECTORY</h1>
+//         <div id="wrapper">
+//           <div class="customer">
+//             <img src="${photo}" alt="user">
+//             <h3>${name}</h3>
+//             <hr>
+//             <span>${email}</span>
+//             <ul>
+//               <li>${address1}</li>
+//               <li>${address2}</li><br>
+//               <li>${phone}</li>
+//             </ul>
+//           </div>
+//         </div>`
+//
+//         document.body.innerHTML = markup;
+//       })
+//   .catch(function(err) {
+//   console.log('Fetch Error :-S', err);
+//   })
+// });

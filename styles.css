@@ -1,0 +1,46 @@
+body{
+  font-family: "Arial", "Verdana", sans-serif;
+  padding: 2vw;
+}
+
+header{
+  text-align: center;
+  padding: 20px 20px 40px 20px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#wrapper{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 33% 33% 33%;
+  padding-left: 15px;
+}
+
+.customer{
+  width: 22vw;
+  padding-bottom: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+img{
+  width: 22vw;
+}
+h3{
+  padding-bottom: 5px;
+  border-bottom: 2px solid #6ABC95;
+}
+
+span{
+  color: #CACACA;
+  font-weight: lighter;
+  font-size: 11pt;
+}
+
+ul{
+  color: #A5A5A5;
+  list-style: none;
+  text-transform: capitalize;
+  padding-left: 0;
+}
